@@ -1,1 +1,5 @@
-VERSION = '0.1.0'
+module MySite
+  class Application
+    VERSION = "0.0.1"
+  end
+end
