@@ -1,5 +1,5 @@
 class AddQuestionsTestIdNullConstrait < ActiveRecord::Migration[5.2]
   def change
-    change_column_null(:questions, :test_id, false)
+    add_reference :questions, :tests, foreign_key: true
   end
 end

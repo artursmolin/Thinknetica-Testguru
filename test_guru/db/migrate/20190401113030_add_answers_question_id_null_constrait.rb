@@ -1,13 +1,13 @@
 class AddAnswersQuestionIdNullConstrait < ActiveRecord::Migration[5.2]
   def change
-    change_column_null(:answers, :question_id, false)
+    add_reference :answers, :questions, foreign_key: true
   end
 
   def up
-    change_column :answers, :correct, :boolean, from:nil, to: false
+    change_column_default :answers, :correct, :boolean, from:nil, to: false
   end
 
   def down
-    change_column :answers, :correct, :boolean, from:false, to: nil
+    change_column_default :answers, :correct, :boolean, from:false, to: nil
   end
 end

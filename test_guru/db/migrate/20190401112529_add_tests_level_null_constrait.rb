@@ -1,7 +1,7 @@
 class AddTestsLevelNullConstrait < ActiveRecord::Migration[5.2]
   def change
-    change_column_null(:tests, :category_id, false)
     change_column_null(:tests, :level, false)
+    add_reference :tests, :categories, foreign_key: true
   end
 
   def up
@@ -9,6 +9,6 @@ class AddTestsLevelNullConstrait < ActiveRecord::Migration[5.2]
   end
 
   def down
-    change_column :tests, :level, :string, from:'Junior', to: nil
+    change_column_default :tests, :level, :string, from:'Junior', to: nil
   end
 end
