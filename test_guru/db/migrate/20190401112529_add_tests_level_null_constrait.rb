@@ -5,10 +5,10 @@ class AddTestsLevelNullConstrait < ActiveRecord::Migration[5.2]
   end
 
   def up
-    change_column_default :tests, :level, :string, from:nil, to: 'Junior'
+    change_column_default :tests, :level, from:nil, to: 'Junior'
   end
 
   def down
-    change_column_default :tests, :level, :string, from:'Junior', to: nil
+    change_column_default :tests, :level, from:'Junior', to: nil
   end
 end

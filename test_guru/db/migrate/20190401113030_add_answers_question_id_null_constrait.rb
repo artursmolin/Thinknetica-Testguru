@@ -4,10 +4,10 @@ class AddAnswersQuestionIdNullConstrait < ActiveRecord::Migration[5.2]
   end
 
   def up
-    change_column_default :answers, :correct, :boolean, from:nil, to: false
+    change_column_default :answers, :correct, from:nil, to: true
   end
 
   def down
-    change_column_default :answers, :correct, :boolean, from:false, to: nil
+    change_column_default :answers, :correct, from: true ,to:nil 
   end
 end
