@@ -51,3 +51,8 @@ user_tests = UserTest.create! ([
   { passed: false, user_id: users[0].id, test_id: tests[3].id },
   { passed: true, user_id: users[1].id, test_id: tests[2].id }
   ])
+
+test_authors = TestAuthor.create! ([
+  {user_id: users[0].id,  test_id: tests[0].id},
+  {user_id: users[1].id, test_id: tests[0].id}
+  ])

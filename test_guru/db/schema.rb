@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_222937) do
+ActiveRecord::Schema.define(version: 2019_04_07_200303) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2019_04_03_222937) do
     t.datetime "updated_at", null: false
     t.integer "test_id"
     t.index ["test_id"], name: "index_questions_on_test_id"
+  end
+
+  create_table "test_authors", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "test_id"
+    t.index ["test_id"], name: "index_test_authors_on_test_id"
+    t.index ["user_id"], name: "index_test_authors_on_user_id"
   end
 
   create_table "tests", force: :cascade do |t|
