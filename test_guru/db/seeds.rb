@@ -13,10 +13,10 @@ categories = Category.create! ([
 
 
 tests = Test.create! ([
-  { title: 'Введение в Ruby', level: 0, category_id: categories[0].id },
-  { title: 'Введение в Python', level: 0, category_id: categories[1].id },
-  { title: 'Python Machine Learning', level: 3, category_id: categories[1].id },
-  { title: 'Vert.x Framework', level: 3, category_id: categories[2].id },
+  { title: 'Введение в Ruby', level: 0, category_id: categories[0].id, author_id: users[0].id },
+  { title: 'Введение в Python', level: 0, category_id: categories[1].id, author_id: users[0].id },
+  { title: 'Python Machine Learning', level: 3, category_id: categories[1].id, author_id: users[0].id },
+  { title: 'Vert.x Framework', level: 3, category_id: categories[2].id, author_id: users[1].id },
   ])
 
 questions = Question.create! ([
@@ -41,13 +41,13 @@ answers = Answer.create! ([
   ])
 
 users = User.create! ([
-  { name: 'Ivan', email: 'ivan@mail.com' },
-  { name: 'Andrei', email: 'andrei@mgail.com' },
-  { name: 'Oxford', email: 'oxford@outlook.com' }
+  { name: 'Иван', email: 'ivan@mail.com' },
+  { name: 'Андрей', email: 'andrei@mgail.com' },
+  { name: 'Оксфорд', email: 'oxford@outlook.com' }
   ])
 
 user_tests = UserTest.create! ([
-  { passed: true, user_id: users[0].id, test_id: tests[0].id },
-  { passed: false, user_id: users[0].id, test_id: tests[3].id },
-  { passed: true, user_id: users[1].id, test_id: tests[2].id }
+  { passed: true, user_id: users[0].id , test_id: tests[0].id },
+  { passed: false, user_id: users[0].id , test_id: tests[3].id },
+  { passed: true, user_id: users[1].id , test_id: tests[2].id }
   ])
