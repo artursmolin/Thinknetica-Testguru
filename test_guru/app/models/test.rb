@@ -5,9 +5,11 @@ class Test < ApplicationRecord
   has_many :user_tests
   has_many :users, through: :user_tests, dependent: :destroy
 
-  def self.by_category(category_name)
-   joins(:category).
-     where(categories: { title: category_name }).
-       order(title: :desc).pluck(:title)
-  end
+  scope :easy, -> {where(level: 0..1)}
+  scope :medium, -> {where(level: 2..4)}
+  scope :hard, -> {where(level: 5..Float::INFINITY)}
+
+  scope :by_category, -> { where(categories: { title: category_name }).
+       order(title: :desc).pluck(:title)}
+       
 end
