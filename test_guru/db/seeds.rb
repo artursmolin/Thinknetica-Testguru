@@ -11,43 +11,44 @@ categories = Category.create! ([
   { title: 'Frameworks' }
 ])
 
+users = User.create! ([
+  { name: 'Иван', email: 'ivan@mail.com' },
+  { name: 'Андрей', email: 'andrei@mgail.com' },
+  { name: 'Оксфорд', email: 'oxford@outlook.com' }
+  ])
+
 
 tests = Test.create! ([
-  { title: 'Введение в Ruby', level: 0, category_id: categories[0].id },
-  { title: 'Введение в Python', level: 0, category_id: categories[1].id },
-  { title: 'Python Machine Learning', level: 3, category_id: categories[1].id },
-  { title: 'Vert.x Framework', level: 3, category_id: categories[2].id },
+  { title: 'Введение в Ruby', level: 0, category: categories[0], author: users[0] },
+  { title: 'Введение в Python', level: 0, category: categories[1], author: users[0] },
+  { title: 'Python Machine Learning', level: 3, category: categories[1], author: users[0] },
+  { title: 'Vert.x Framework', level: 3, category: categories[2], author: users[1] },
   ])
 
 questions = Question.create! ([
-  { body: 'Создатель языка Руби?', test_id: tests[0].id },
-  { body: 'Что за документ - PEP8?', test_id: tests[1].id },
-  { body: 'Django - MVC or MVVM', test_id: tests[1].id },
-  { body: 'Что такое kNN?', test_id: tests[1].id },
-  { body: 'Что такое Vert.x?', test_id: tests[2].id },
+  { body: 'Создатель языка Руби?', test: tests[0] },
+  { body: 'Что за документ - PEP8?', test: tests[1] },
+  { body: 'Django - MVC or MVVM', test: tests[1] },
+  { body: 'Что такое kNN?', test: tests[1] },
+  { body: 'Что такое Vert.x?', test: tests[2] },
   ])
 
 answers = Answer.create! ([
-  { body: 'Юкихиро Мацумото', correct: true, question_id: questions[0].id },
-  { body: 'Расмус Лердорф', correct: false, question_id: questions[0].id },
-  { body: 'MVC', correct: true, question_id: questions[1].id },
-  { body: 'MVVM?', correct: false, question_id: questions[1].id },
-  { body: 'Vert.x это событийно-ориентированный фреймворк работающий на JVM', correct: true, question_id: questions[2].id },
-  { body: 'Бесплатный веб-фреймворк PHP с открытым кодом, предназначенный для разработки с использованием архитектурной модели MVC', correct: false, question_id: questions[2].id },
-  { body: 'Алгоритм k-ближайших соседей', correct: true, question_id: questions[3].id },
-  { body: 'Это интегрированная среда разработки и обучения на языке Python, созданная с помощью библиотеки Tkinter', correct: false, question_id: questions[3].id },
-  { body: 'Этот документ описывает соглашение о том, как писать код для языка python, включая стандартную библиотеку, входящую в состав python.', correct: true,  question_id: questions[4].id },
-  { body: 'Это распространённый стандарт кодирования текста, позволяющий более компактно хранить и передавать символы Юникода', correct: false, question_id: questions[4].id },
+  { body: 'Юкихиро Мацумото', correct: true, question: questions[0] },
+  { body: 'Расмус Лердорф', correct: false, question: questions[0] },
+  { body: 'MVC', correct: true, question: questions[1] },
+  { body: 'MVVM?', correct: false, question: questions[1] },
+  { body: 'Vert.x это событийно-ориентированный фреймворк работающий на JVM', correct: true, question: questions[2]},
+  { body: 'Бесплатный веб-фреймворк PHP с открытым кодом, предназначенный для разработки с использованием архитектурной модели MVC', correct: false, question: questions[2] },
+  { body: 'Алгоритм k-ближайших соседей', correct: true, question: questions[3] },
+  { body: 'Это интегрированная среда разработки и обучения на языке Python, созданная с помощью библиотеки Tkinter', correct: false, question: questions[3] },
+  { body: 'Этот документ описывает соглашение о том, как писать код для языка python, включая стандартную библиотеку, входящую в состав python.', correct: true,  question: questions[4] },
+  { body: 'Это распространённый стандарт кодирования текста, позволяющий более компактно хранить и передавать символы Юникода', correct: false, question: questions[4] },
   ])
 
-users = User.create! ([
-  { name: 'Ivan', email: 'ivan@mail.com' },
-  { name: 'Andrei', email: 'andrei@mgail.com' },
-  { name: 'Oxford', email: 'oxford@outlook.com' }
-  ])
 
 user_tests = UserTest.create! ([
-  { passed: true, user_id: users[0].id, test_id: tests[0].id },
-  { passed: false, user_id: users[0].id, test_id: tests[3].id },
-  { passed: true, user_id: users[1].id, test_id: tests[2].id }
+  { passed: true, user: users[0] , test: tests[0] },
+  { passed: false, user: users[0] , test: tests[3] },
+  { passed: true, user: users[1] , test: tests[2] }
   ])
