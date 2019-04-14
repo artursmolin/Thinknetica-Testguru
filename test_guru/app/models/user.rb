@@ -7,5 +7,6 @@ class User < ApplicationRecord
   end
 
   validates :email, presence:true, uniqueness:true
-            :level, numericality: { only_integer: true }
+  validates :level, numericality: { only_integer: true }
+
 end
