@@ -9,7 +9,13 @@ class Test < ApplicationRecord
   scope :medium, -> {where(level: 2..4)}
   scope :hard, -> {where(level: 5..Float::INFINITY)}
 
-  scope :by_category, -> { where(categories: { title: category_name }).
-       order(title: :desc).pluck(:title)}
-       
+  scope :by_category, -> (category_name) {joins(:category).where(categories: { title: category_name })}
+
+  def self.category_by_title_desc(category_name)
+      by_category(category_name).order(title: :desc).pluck(:title)
+  end
+
+  validates :body, presence: true, uniqueness: true
+  validates :level, numericality: { only_integer: true }
+
 end

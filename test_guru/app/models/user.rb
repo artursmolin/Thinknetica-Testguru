@@ -5,4 +5,7 @@ class User < ApplicationRecord
 
   scope :test_level, ->(level) {(where(level: level)}
   end
+
+  validates :email, presence:true, uniqueness:true
+            :level, numericality: { only_integer: true }
 end
