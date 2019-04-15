@@ -8,6 +8,6 @@ class Answer < ApplicationRecord
 
   def answers_quantity
     errors.add(:question_id, "more than 4 answers") if
-      question.answer.count >= 4
+      question.answers.count >= 4
   end
 end

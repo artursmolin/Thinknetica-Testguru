@@ -12,7 +12,7 @@ class Test < ApplicationRecord
   scope :by_category, -> (category_name) { joins(:category).where(categories: { title: category_name }).order(title: :desc) }
 
   validates :title, presence: true, uniqueness: true
-  validates :level, numericality: { only_integer: true }, { greater_than_or_equal_to: 0 }
+  validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def self.category_by_title_desc(category_name)
       by_category(category_name).pluck(:title)
