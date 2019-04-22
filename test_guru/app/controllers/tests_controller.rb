@@ -1,6 +1,10 @@
 class TestsController < ApplicationController
+
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
+  
   def index
-    render plain: "All html"
+    @tests = Test.all.pluck('id, title')
+    render inline: '<%= @tests %>'
   end
 
   def new
@@ -9,20 +13,23 @@ class TestsController < ApplicationController
   end
 
   def create
-    @test = Test.create!(test_params)
+    @test = Test.new(test_params)
     if @test.errors.empty?
-      redirect_to @test
-    else
-      render 'new'
+      render inline: "New Test - Title: <%= @test.title %>, Category: <%= @test.category.title %>, Author: <%= @test.author.name %> has been created!"
+      @test.save
     end
   end
 
   def show
-    render plain: "New test has been created!"
+
   end
 
   private
   def test_params
     params.require(:test).permit(:title, :level, :category_id, :author_id)
+  end
+
+  def rescue_with_test_not_found
+    render plain: 'Test was not found!'
   end
 end

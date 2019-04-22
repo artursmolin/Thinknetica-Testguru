@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
   resources :tests do
-    resources :questions, shallow: true
+    resources :questions, shallow: true, only: [:index, :show, :create, :destroy, :new]
   end
 
-  get "/tests/:test_id/questions/new", to: "questions#create"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

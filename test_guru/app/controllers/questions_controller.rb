@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :find_test
+  before_action :find_test, only: [:index, :create]
+
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
 
   def index
@@ -9,27 +9,25 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question_showed = Question.find(params[:id])
-    render json: @question_showed
+    @question = Question.find(params[:id])
+    render inline: "ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %>"
   end
 
-  def new
-
-  end
+  def new; end
 
   def create
-    @question = @test.questions.create!(question_params)
+    @question = @test.questions.new(question_params)
     if @question.errors.empty?
-      redirect_to @test
-    else
-      render render plain: "New question has been created!"
+      @question.save
+      render inline: "New question - ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %> has been created!"
     end
   end
 
   def destroy
-    @question = @test.questions.destroy
-    render plain: "Test has been destroyed!"
+    question = Question.find(params[:id]).destroy
+    render inline: "New question - ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %> has been deleted!"
   end
+
 
   private
 
@@ -39,5 +37,10 @@ class QuestionsController < ApplicationController
 
   def find_test
     @test = Test.find(params[:test_id])
+  end
+
+  def rescue_record_not_found
+    head :not_found
+    render plain: "Record not found!"
   end
 end
