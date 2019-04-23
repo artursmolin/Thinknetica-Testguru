@@ -16,13 +16,12 @@ class TestsController < ApplicationController
     @test = Test.new(test_params)
     if @test.save
       render inline: "New Test - Title: <%= @test.title %>, Category: <%= @test.category.title %>, Author: <%= @test.author.name %> has been created!"
-    else render plain: "Something going wrong!"
+    else
+      render plain: "Something going wrong!"
     end
   end
 
-  def show
-
-  end
+  def show; end
 
   private
   def test_params

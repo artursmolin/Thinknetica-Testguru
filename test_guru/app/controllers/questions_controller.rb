@@ -19,7 +19,8 @@ class QuestionsController < ApplicationController
     @question = @test.questions.new(question_params)
     if @question.save
       render inline: "New question - ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %> has been created!"
-    else render plain: "Something going wrong!"
+    else
+      render plain: "Something going wrong!"
     end
   end
 
