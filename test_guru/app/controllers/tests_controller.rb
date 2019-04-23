@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
-  
+
   def index
     @tests = Test.all.pluck('id, title')
     render inline: '<%= @tests %>'
@@ -14,9 +14,9 @@ class TestsController < ApplicationController
 
   def create
     @test = Test.new(test_params)
-    if @test.errors.empty?
+    if @test.save
       render inline: "New Test - Title: <%= @test.title %>, Category: <%= @test.category.title %>, Author: <%= @test.author.name %> has been created!"
-      @test.save
+    else render plain: "Something going wrong!"
     end
   end
 
