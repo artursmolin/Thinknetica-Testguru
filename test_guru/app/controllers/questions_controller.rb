@@ -13,14 +13,18 @@ class QuestionsController < ApplicationController
     render inline: "ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %>"
   end
 
-  def new; end
+  def new
+    @test = Test.find(params[:test_id])
+    @question = @test.questions.new
+  end
 
   def create
     @question = @test.questions.new(question_params)
+
     if @question.save
-      render inline: "New question - ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %> has been created!"
+      redirect_to @question
     else
-      render plain: "Something going wrong!"
+      render :new
     end
   end
 

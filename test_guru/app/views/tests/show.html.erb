@@ -1,0 +1,23 @@
+<p>
+  <strong>Title:</strong>
+  <%= @test.title %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @test.level %>
+</p>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th align="left">Body</th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td><%= question.id %></td>
+    <td><%= question.body %></td>
+  </tr>
+<% end %>
+</table>
