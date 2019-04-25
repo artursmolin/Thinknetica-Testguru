@@ -11,13 +11,20 @@
 <table>
   <tr>
     <th>ID</th>
-    <th align="left">Body</th>
+    <th align="left">Questions</th>
   </tr>
 
-<% @questions.each do |question| %>
-  <tr>
-    <td><%= question.id %></td>
-    <td><%= question.body %></td>
-  </tr>
-<% end %>
+<%= render @questions %>
 </table>
+
+<p>
+<%= link_to 'New Question', new_test_question_path(params[:id]) %>
+</p>
+
+<p>
+<%= link_to 'Back', tests_path %>
+</p>
+
+<p>
+<%= link_to 'Edit', edit_test_path(@test) %>
+</p>

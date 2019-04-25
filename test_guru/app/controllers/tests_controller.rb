@@ -41,6 +41,13 @@ class TestsController < ApplicationController
     end
   end
 
+  def destroy
+    @test = Test.find(params[:id])
+
+    @test.destroy
+    redirect_to tests_path
+  end
+
   private
   def test_params
     params.require(:test).permit(:title, :level, :category_id, :author_id)

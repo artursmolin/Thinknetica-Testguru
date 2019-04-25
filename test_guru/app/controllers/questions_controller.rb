@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    render inline: "Question - ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %> has been deleted!"
+    redirect_to test_path(test.test_id)
   end
 
 

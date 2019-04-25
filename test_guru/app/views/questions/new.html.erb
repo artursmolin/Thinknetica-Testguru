@@ -1,22 +1,7 @@
-<h1>Create New Question</h1>
+<h1>Create New Test</h1>
 
-<%= form_with model: [@test, @question], local: true do |form| %>
-  <% if @question.errors.present? %>
-    <div>
-      <h2>Errors detected:</h2>
+<%= render 'form' %>
 
-      <ul>
-        <% @question.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= form.label :body %>
-    <%= form.text_field :body, id: :question_body %>
-  </p>
-
-  <p><%= form.submit %></p>
-<% end %>
+<p>
+<%= link_to 'Back', test_path(@test.id) %>
+</p>
