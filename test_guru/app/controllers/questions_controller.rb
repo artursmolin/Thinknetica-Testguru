@@ -18,6 +18,10 @@ class QuestionsController < ApplicationController
     @question = @test.questions.new
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
   def create
     @question = @test.questions.new(question_params)
 
@@ -31,6 +35,16 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     redirect_to test_path(test.test_id)
+  end
+
+  def update
+    @question = Question.find(params[:id])
+
+    if @question.update(question_params)
+      redirect_to tests_path
+    else
+      render :edit
+    end
   end
 
 
