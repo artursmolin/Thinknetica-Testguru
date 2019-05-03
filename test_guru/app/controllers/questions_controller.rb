@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    render inline: "ID: <%= @question.id %>, Question: <%= @question.body %>, Test_ID: <%= @question.test_id %>"
+    @question = Question.find(params[:id])
   end
 
   def new
