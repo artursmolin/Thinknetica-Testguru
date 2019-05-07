@@ -1,17 +1,12 @@
 class QuestionsController < ApplicationController
   before_action :find_test, only: [:index, :create, :new]
-  before_action :find_question, except: [:index, :new, :create]
+  before_action :find_question, only: [:destroy, :update, :edit, :show]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
 
-  def index
-    @questions = @test.questions
-    render json: @questions
-  end
+  def index; end
 
-  def show
-
-  end
+  def show; end
 
   def new
     @question = @test.questions.new
@@ -33,7 +28,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to test_path(test.test_id)
+    redirect_to tests_path
   end
 
   def update
