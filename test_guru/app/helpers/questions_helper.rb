@@ -1,7 +1,4 @@
 module QuestionsHelper
-  def index
-  end
-
   def question_header(question)
     if question.new_record?
       "Create New #{question.test.title} Question"
