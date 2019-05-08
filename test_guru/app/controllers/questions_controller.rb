@@ -23,9 +23,8 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    test = Test.find(@question.test_id)
     @question.destroy
-    redirect_to test
+    redirect_to @question.test
   end
 
   def update
