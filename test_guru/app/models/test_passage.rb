@@ -12,7 +12,9 @@ class TestPassage < ApplicationRecord
   end
 
   def accept!(answer_ids)
-    self.correct_question += 1 if correct_answer?(answer_ids)
+    if correct_answer?(answer_ids)
+      self.correct_question += 1
+    end
     save!
   end
 
@@ -20,13 +22,8 @@ class TestPassage < ApplicationRecord
     current_question.answers.right
   end
 
-  def current_question_index
-    index = 1
-    if current_question.nil?
-      index = 1
-    else
-      index += 1
-    end
+  def question_number
+    self.test.questions.index(current_question) + 1
   end
 
   private
@@ -42,4 +39,6 @@ class TestPassage < ApplicationRecord
   def next_question
     self.current_question = test.questions.order(:id).where('id >?', current_question.id).first
   end
+
+
 end
