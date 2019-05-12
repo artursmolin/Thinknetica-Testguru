@@ -1,1 +1,11 @@
 <h1>The Ruby Test was Completed!</h1>
+
+<b>Quantity of questions:</b>
+<%= @test_passage.test.questions.size %>
+<br>
+<b>Right Answers:</b>
+<%= @test_passage.correct_question %>
+
+<p>
+<%= link_to 'Back', tests_path %>
+</p>
