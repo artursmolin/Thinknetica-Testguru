@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
-
-  resources :tests  do
+  resources :tests do
     resources :questions, except: [:index], shallow: true do
       resources :answers, shallow: true
     end
@@ -11,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :test_passages, only: [:show, :update] do
+  resources :test_passages, only: %i[show update] do
     member do
       get :result
     end

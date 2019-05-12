@@ -5,17 +5,16 @@ class Test < ApplicationRecord
   has_many :test_passages
   has_many :users, through: :test_passages, dependent: :destroy
 
-  scope :easy, -> {where(level: 0..1)}
-  scope :medium, -> {where(level: 2..4)}
-  scope :hard, -> {where(level: 5..Float::INFINITY)}
+  scope :easy, -> { where(level: 0..1) }
+  scope :medium, -> { where(level: 2..4) }
+  scope :hard, -> { where(level: 5..Float::INFINITY) }
 
-  scope :by_category, -> (category_name) { joins(:category).where(categories: { title: category_name }).order(title: :desc) }
+  scope :by_category, ->(category_name) { joins(:category).where(categories: { title: category_name }).order(title: :desc) }
 
   validates :title, presence: true, uniqueness: true
   validates :level, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def self.category_by_title_desc(category_name)
-      by_category(category_name).pluck(:title)
+    by_category(category_name).pluck(:title)
   end
-
 end

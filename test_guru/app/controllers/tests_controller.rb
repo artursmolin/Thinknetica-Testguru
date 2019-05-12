@@ -1,6 +1,5 @@
 class TestsController < ApplicationController
-
-  before_action :find_test, except: [:index, :new, :create]
+  before_action :find_test, except: %i[index new create]
   before_action :find_user, only: :start
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
@@ -50,6 +49,7 @@ class TestsController < ApplicationController
   end
 
   private
+
   def test_params
     params.require(:test).permit(:title, :level, :category_id, :author_id)
   end
