@@ -6,7 +6,7 @@
 </b>
 <br>
 <p>Осталось вопросов:</p>
-<b><%= @test_passage.test.questions.size - @test_passage.test.questions.count %></b>
+<%= @test_passage.current_question_index %>
 <p>Текущий вопрос:</p>
  <%= @test_passage.current_question.body %>
 </b>

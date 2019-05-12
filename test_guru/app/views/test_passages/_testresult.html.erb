@@ -1,0 +1,9 @@
+<% if result_test >= 85 %>
+  <b style="color:green"><%= result_test.round(2) %>%
+  <br>  "Test passed!"
+  </b>
+<% else %>
+  <b style="color:red"><%= result_test.round(2) %>%
+  <br>  "Test failed!"
+  </b>
+<% end %>
