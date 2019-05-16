@@ -9,11 +9,10 @@
 <b>
  <%= @test_passage.question_number %>
 </b>
- <p>Осталось вопросов:</p>
+<p>Осталось вопросов:</p>
 <b>
   <%= @test_passage.test.questions.size - @test_passage.question_number.to_i  %>
 </b>
-
 
 
 <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
