@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: [:index, :create, :new]
-  before_action :find_question, only: [:destroy, :update, :edit, :show]
+  before_action :find_test, only: %i[index create new]
+  before_action :find_question, only: %i[destroy update edit show]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
 
@@ -35,7 +35,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-
   private
 
   def question_params
@@ -52,6 +51,6 @@ class QuestionsController < ApplicationController
 
   def rescue_record_not_found
     head :not_found
-    render plain: "Record not found!"
+    render plain: 'Record not found!'
   end
 end
